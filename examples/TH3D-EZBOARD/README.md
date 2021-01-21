@@ -45,58 +45,34 @@ On a TH3D_EZBOARD board, you need to make the following changes in pins_TH3D_EZB
 //   #error "Only the CR10_STOCKDISPLAY is supported with TH3D EZBoard."
 // #endif
 
-#if HAS_SPI_LCD
+#if ENABLED(CR10_STOCKDISPLAY)
+  #define BEEPER_PIN                       P1_31
+  #define BTN_EN1                          P3_26
+  #define BTN_EN2                          P3_25
+  #define BTN_ENC                          P1_30
+  #define LCD_PINS_RS                      P0_16
+  #define LCD_PINS_ENABLE                  P0_18
+  #define LCD_PINS_D4                      P0_15
+  #define KILL_PIN                         P2_11
+#elif ENABLED(FYSETC_MINI_12864)
 
-  #if ENABLED(CR10_STOCKDISPLAY)
+  #define BTN_EN1                         P3_26
+  #define BTN_EN2                         P3_25
+  #define BTN_ENC                         P1_30
 
-    #define BEEPER_PIN                       P1_31
-    #define BTN_EN1                          P3_26
-    #define BTN_EN2                          P3_25
-    #define BTN_ENC                          P1_30
-    #define LCD_PINS_RS                      P0_16
-    #define LCD_PINS_ENABLE                  P0_18
-    #define LCD_PINS_D4                      P0_15
-    #define KILL_PIN                         P2_11
+  #define DOGLCD_CS                       P0_18
+  #define DOGLCD_A0                       P0_16
+  #define DOGLCD_SCK                      P1_31
+  #define DOGLCD_MOSI                     P0_15
+  #define LCD_PINS_ENABLE                 P0_18
+  #define LCD_PINS_RS                     P0_16
 
-  #elif ENABLED(FYSETC_MINI_12864)
+  #define FORCE_SOFT_SPI
 
-    #define BTN_EN1                         P3_26
-    #define BTN_EN2                         P3_25
-    #define BTN_ENC                         P1_30
+  #define LCD_RESET_PIN                   P2_11
 
-    #define DOGLCD_CS                       P0_18
-    #define DOGLCD_A0                       P0_16
-    #define DOGLCD_SCK                      P1_31
-    #define DOGLCD_MOSI                     P0_15
-
-    // #define KILL_PIN                        -1
-    // #define BEEPER_PIN                      -1 
-    // #define LCD_PINS_ENABLE                 -1
-    // #define LCD_PINS_D4                     -1
-
-    // #define LCD_BACKLIGHT_PIN               -1
-
-    #define FORCE_SOFT_SPI
-
-    #define LCD_RESET_PIN                   P2_11
-
-    // #if EITHER(FYSETC_MINI_12864_1_2, FYSETC_MINI_12864_2_0)
-    //   #ifndef RGB_LED_R_PIN
-    //     #define RGB_LED_R_PIN               P0_18
-    //   #endif
-    //   #ifndef RGB_LED_G_PIN
-    //     #define RGB_LED_G_PIN               P0_18
-    //   #endif
-    //   #ifndef RGB_LED_B_PIN
-    //     #define RGB_LED_B_PIN               P0_18
-    //   #endif
-    // #elif ENABLED(FYSETC_MINI_12864_2_1)
-    //   #define NEOPIXEL_PIN                  P0_18
-    // #endif
-    
-  #else
-    #error "Only the CR10_STOCKDISPLAY is supported with TH3D EZBoard."
-  #endif
+#elif HAS_SPI_LCD
+  #error "Only the CR10_STOCKDISPLAY is supported with TH3D EZBoard."
 #endif
 ```
 
