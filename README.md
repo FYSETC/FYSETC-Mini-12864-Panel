@@ -48,76 +48,21 @@ There are two versions, one with only two RGB LEDs around the encoder, the backl
 
 ## Firmware config
 
-This screen driver is ST7567 and is compatible with the marlin Mini panel. It has been tested well, but the following configuration is required.
+### Marlin
 
-**Before you start, please install the latest version of U8glib.**
+Uncomment the following define according to your panel version, you can check it at the back of the panel.
 
-##### Step1. changes the pins.
-
-On a RAMPS-compatible board, you need to make the following changes in pins_RAMPS.h:
-
-``` cpp tab='pins_RAMPS.h'
- #elif ENABLED(MINIPANEL)
-      #define BEEPER_PIN 37
-      // Pins for DOGM SPI LCD Support
-      #define DOGLCD_A0  16
-      #define DOGLCD_CS  17
-      #define LCD_BACKLIGHT_PIN -1 // backlight LED on A11/D65
-      #define LCD_RESET_PIN  23
-      #define SDSS   53
-
-      #define KILL_PIN -1
-      #define LCD_CONTRAST 200
-      #define BTN_EN1 31
-      #define BTN_EN2 33
-      #define BTN_ENC 35  //the click switch
-    
-      #define SD_DETECT_PIN 49
 ```
-
-On a our F6 board, you need to make the following changes in pins_FYSETC_F6_V13.h:
-
-
-``` cpp tab='pins_RAMPS.h'
-//////////////////////////
-// LCDs and Controllers //
-//////////////////////////
-
-    // #define LCD_PINS_RS         16
-    // #define LCD_PINS_ENABLE     17
-    // #define LCD_PINS_D4         23
-    // #define LCD_PINS_D5         25
-    // #define LCD_PINS_D6         27
-    // #define LCD_PINS_D7         29
-    
-    // Pins for DOGM SPI LCD Support
-    #define DOGLCD_A0  16
-    #define DOGLCD_CS  17
-    #define LCD_BACKLIGHT_PIN -1 
-    #define LCD_RESET_PIN  23
-    #define LCD_CONTRAST 255
-    
-    #define SDSS   53
-    #define BEEPER_PIN          37
-    #define BTN_EN1             31
-    #define BTN_EN2             33
-    #define BTN_ENC             35
-    #define SD_DETECT_PIN       49
-    #define KILL_PIN            41
+//
+// FYSETC variant of the MINI12864 graphic controller with SD support
+// https://wiki.fysetc.com/Mini12864_Panel/
+//
+//#define FYSETC_MINI_12864_X_X    // Type C/D/E/F. No tunable RGB Backlight by default
+//#define FYSETC_MINI_12864_1_2    // Type C/D/E/F. Simple RGB Backlight (always on)
+//#define FYSETC_MINI_12864_2_0    // Type A/B. Discreet RGB Backlight
+//#define FYSETC_MINI_12864_2_1  // Type A/B. Neopixel RGB Backlight
+//#define FYSETC_GENERIC_12864_1_1 // Larger display with basic ON/OFF backlight.
 ```
-##### Step2. Config the configuration.h.
-
-![1551170035746](images/1551170035746.png)
-
-![1551170197283](images/1551170197283.png)
-
-##### Step3. Config the configuration_adv.h.
-
-![1551170652167](images/1551170652167.png)
-
-##### Step4. add the codes in ultralcd_impl_DOGM.h.
-
-![1551170953232](images/1551170953232.png)
 
 ## Attention
 
