@@ -66,6 +66,42 @@ Uncomment the following define according to your panel version, you can check it
 //#define FYSETC_GENERIC_12864_1_1 // Larger display with basic ON/OFF backlight.
 ```
 
+### Klipper on Cheetah V3.0
+
+```
+[display]
+#	mini12864 LCD Display
+lcd_type: uc1701
+cs_pin: PB15
+a0_pin: PB12
+rst_pin: PB13
+encoder_pins: ^PC10,^PC11
+click_pin: ^!PC6
+contrast: 63
+#spi_bus: spi1
+spi_software_mosi_pin: PA7
+spi_software_miso_pin: PA6
+spi_software_sclk_pin: PA5
+
+[neopixel fysetc_mini12864]
+#	To control Neopixel RGB in mini12864 display
+pin: PB14
+chain_count: 3
+initial_RED: 0.1
+initial_GREEN: 0.5
+initial_BLUE: 0.0
+color_order: RGB
+
+#	Set RGB values on boot up for each Neopixel. 
+#	Index 1 = display, Index 2 and 3 = Knob
+[delayed_gcode setdisplayneopixel]
+initial_duration: 1
+gcode:
+        SET_LED LED=fysetc_mini12864 RED=1 GREEN=1 BLUE=1 INDEX=1 TRANSMIT=0
+        SET_LED LED=fysetc_mini12864 RED=1 GREEN=0 BLUE=0 INDEX=2 TRANSMIT=0
+        SET_LED LED=fysetc_mini12864 RED=1 GREEN=0 BLUE=0 INDEX=3 
+```
+
 ## Attention
 
 -TBD-
